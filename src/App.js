@@ -1,7 +1,8 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import React from 'react';
+import StockList from './components/StockList';
 
 async function getStockPrice(ticker) {
 	const API_KEY = '32NRSF2AHBQ7OY1G';
@@ -44,40 +45,11 @@ class App extends React.Component {
 				<Container className="mt-4">
 					<Row>
 						<Col>
-							<ListGroup>
-								{this.state.owned_stocks.map((owned_stock) => {
-									return (
-										<ListGroup.Item>
-											<p className="stock-info mt-3 font-weight-bold">{owned_stock.ticker}</p>{' '}
-											<p className="stock-info">
-												Portfolio Value:{' '}
-												<span className="text-success">
-													${owned_stock.current_price * owned_stock.shares}
-												</span>
-											</p>
-											<p className="stock-info">
-												Current Price:{' '}
-												<span className="text-success">
-													{owned_stock.current_price != null
-														? '$' + owned_stock.current_price
-														: 'Loading...'}
-												</span>
-											</p>
-											<p className="stock-info">
-												Buy Price: <span className="text-success">${owned_stock.buy_price}</span>
-											</p>
-											<p className="mt-1 mb-3 stock-info text-info">{owned_stock.shares} shares</p>
-										</ListGroup.Item>
-									);
-								})}
-								{this.state.owned_stocks.length === 0 ? (
-									<ListGroup.Item>No stocks.</ListGroup.Item>
-								) : (
-									<></>
-								)}
-							</ListGroup>
+							<StockList owned_stocks={this.state.owned_stocks} />
 						</Col>
-						<Col></Col>
+						<Col>
+							<h1>Trading tools coming soon.</h1>
+						</Col>
 					</Row>
 				</Container>
 			</div>
