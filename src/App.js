@@ -5,16 +5,13 @@ import React from 'react';
 import StockList from './components/StockList';
 import ls from 'local-storage';
 import StockTrader from './components/StockTrader';
-
-async function getStockPrice(symbol) {
-	const API_KEY = '32NRSF2AHBQ7OY1G';
-	return 152.33;
-}
+import { getStockPrice } from './utils/stockInfo';
 
 class App extends React.Component {
 	state = {
-		owned_stocks: [] || ls('owned_stocks'),
+		owned_stocks: [{ symbol: 'AAPL', buy_price: 100.0, shares: 2 }] || ls('owned_stocks'),
 	};
+	// [symbol, buy_price, shares, current_price (const)]
 
 	saveData() {
 		ls('owned_stocks', this.state.owned_stocks);
