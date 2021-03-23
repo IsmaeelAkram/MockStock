@@ -8,7 +8,7 @@ class StockTrader extends Component {
 			<Form>
 				<Form.Row>
 					<Form.Group as={Col}>
-						<Form.Label>Stock Ticker</Form.Label>
+						<Form.Label>Stock Symbol</Form.Label>
 						<Form.Control placeholder="Ex: TSLA" />
 					</Form.Group>
 					<Form.Group as={Col}>

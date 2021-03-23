@@ -4,7 +4,7 @@ import { ListGroup } from 'react-bootstrap';
 export default function ({ stock }) {
 	return (
 		<ListGroup.Item>
-			<p className="stock-info mt-3 font-weight-bold">{stock.ticker}</p>{' '}
+			<p className="stock-info mt-3 font-weight-bold">{stock.symbol}</p>{' '}
 			<p className="stock-info">
 				Portfolio Value:{' '}
 				<span className={stock.current_price > stock.buy_price ? 'text-success' : 'text-danger'}>

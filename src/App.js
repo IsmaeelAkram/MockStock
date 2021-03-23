@@ -6,7 +6,7 @@ import StockList from './components/StockList';
 import ls from 'local-storage';
 import StockTrader from './components/StockTrader';
 
-async function getStockPrice(ticker) {
+async function getStockPrice(symbol) {
 	const API_KEY = '32NRSF2AHBQ7OY1G';
 	return 152.33;
 }
@@ -23,9 +23,9 @@ class App extends React.Component {
 	componentDidMount() {
 		this.newOwnedStocks = [];
 		this.state.owned_stocks.forEach((owned_stock) => {
-			getStockPrice(owned_stock.ticker).then((current_price) => {
+			getStockPrice(owned_stock.symbol).then((current_price) => {
 				this.newOwnedStocks.push({
-					ticker: owned_stock.ticker,
+					symbol: owned_stock.symbol,
 					buy_price: owned_stock.buy_price,
 					shares: owned_stock.shares,
 					current_price: current_price,
