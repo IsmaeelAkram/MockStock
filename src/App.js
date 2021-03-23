@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import React from 'react';
 import StockList from './components/StockList';
+import ls from 'local-storage';
+import StockTrader from './components/StockTrader';
 
 async function getStockPrice(ticker) {
 	const API_KEY = '32NRSF2AHBQ7OY1G';
@@ -10,14 +12,12 @@ async function getStockPrice(ticker) {
 }
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			owned_stocks: [
-				{ ticker: 'AAPL', buy_price: 140.43, shares: 3 },
-				{ ticker: 'GOOGL', buy_price: 313.43, shares: 2 },
-			],
-		};
+	state = {
+		owned_stocks: [] || ls('owned_stocks'),
+	};
+
+	saveData() {
+		ls('owned_stocks', this.state.owned_stocks);
 	}
 
 	componentDidMount() {
@@ -48,7 +48,7 @@ class App extends React.Component {
 							<StockList owned_stocks={this.state.owned_stocks} />
 						</Col>
 						<Col>
-							<h1>Trading tools coming soon.</h1>
+							<StockTrader owned_stocks={this.state.owned_stocks} />
 						</Col>
 					</Row>
 				</Container>
