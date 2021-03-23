@@ -9,7 +9,7 @@ import { getStockPrice } from './utils/stockInfo';
 
 class App extends React.Component {
 	state = {
-		owned_stocks: [{ symbol: 'AAPL', buy_price: 100.0, shares: 2 }] || ls('owned_stocks'),
+		owned_stocks: [] || ls('owned_stocks'),
 	};
 	// [symbol, buy_price, shares, current_price (const)]
 
@@ -36,9 +36,6 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<h1>Mock Stock</h1>
-				<a href="https://buymeacoffee.com/ismaeel">
-					<Button variant="primary">Made with ♥️</Button>
-				</a>
 				<Container className="mt-4">
 					<Row>
 						<Col>
