@@ -11,6 +11,7 @@ class App extends React.Component {
 
 		this.state = {
 			owned_stocks: [] || ls('owned_stocks'),
+			cash: 0 || ls('cash'),
 			buySymbol: '',
 			buyShares: 0,
 		};
@@ -26,6 +27,7 @@ class App extends React.Component {
 
 	saveData() {
 		ls('owned_stocks', this.state.owned_stocks);
+		ls('cash', this.state.cash);
 	}
 
 	handleBuy(e) {
@@ -88,12 +90,15 @@ class App extends React.Component {
 			});
 		}
 		setTimeout(this.refreshCurrentPrices, 100);
+		setTimeout(this.saveData, 100);
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<h1>Mock Stock</h1>
+				<h1>
+					Cash: <span className="text-success">${this.state.cash}</span>
+				</h1>
 				<Container className="mt-4">
 					<Row>
 						<Col>
